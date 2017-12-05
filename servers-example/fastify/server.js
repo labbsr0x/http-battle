@@ -1,9 +1,12 @@
 const fastify = require('fastify')()
 
 let count = 0;
-fastify.get('/*', function (request, reply) {
-  // console.log(count);
-  reply.send('FASTIFY ' + ++count)
+fastify.get('/prepare', function (request, reply) {
+  count = 0;
+  reply.send("Scheduled " + count)
+})
+fastify.get('/shoot', function (request, reply) {
+  reply.send(++count)
 })
 
 fastify.listen(9007, function (err) {

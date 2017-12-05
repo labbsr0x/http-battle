@@ -21,8 +21,8 @@ RUN apt-get install -y libnss3 libxss1 libasound2 libpangocairo-1.0-0 libx11-xcb
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app/
+COPY requester/package.json /usr/src/app/
 RUN npm install && npm cache clean --force
-COPY src /usr/src/app/src
+COPY requester /usr/src/app/src
 
 CMD [ "npm", "start" ]

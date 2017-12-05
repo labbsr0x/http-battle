@@ -12,6 +12,7 @@ services:
       - HOST=${HOST_IP}:9005
       - TRIGGER_TIME=${TRIGGER_TIME}
       - RUN_INTERVAL=${RUN_INTERVAL}
+      - DEBUG=${DEBUG}
 
   stress-node-http:
     image: labbsr0x/web-crasher-nodejs
@@ -24,6 +25,7 @@ services:
       - HOST=${HOST_IP}:9006
       - TRIGGER_TIME=${TRIGGER_TIME}
       - RUN_INTERVAL=${RUN_INTERVAL}
+      - DEBUG=${DEBUG}
 
   stress-node-fastify:
     image: labbsr0x/web-crasher-nodejs
@@ -36,7 +38,7 @@ services:
       - HOST=${HOST_IP}:9007
       - TRIGGER_TIME=${TRIGGER_TIME}
       - RUN_INTERVAL=${RUN_INTERVAL}
-
+      - DEBUG=${DEBUG}
 
   stress-java-spark:
     image: labbsr0x/web-crasher-nodejs
@@ -49,6 +51,7 @@ services:
       - HOST=${HOST_IP}:9008
       - TRIGGER_TIME=${TRIGGER_TIME}
       - RUN_INTERVAL=${RUN_INTERVAL}
+      - DEBUG=${DEBUG}
 
   stress-java-nio:
     image: labbsr0x/web-crasher-nodejs
@@ -61,3 +64,4 @@ services:
       - HOST=${HOST_IP}:9009
       - TRIGGER_TIME=${TRIGGER_TIME}
       - RUN_INTERVAL=${RUN_INTERVAL}
+      - DEBUG=${DEBUG}
