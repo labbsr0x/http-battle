@@ -18,11 +18,15 @@ export default class AppModel extends RhelenaPresentationModel {
             name: 'Go Gorilla',
             host: "http://localhost:9000"
         }]
+        this.prepareTimeout = null
     }
 
     prepareServers(){
-      this.servers.map( server => {
-        fetch(`${server.host}/prepare`)
-      })
+      clearTimeout(this.prepareTimeout)
+      this.prepareTimeout = setTimeout(function(){
+        this.servers.map( async (server) => {
+          fetch(`${server.host}/prepare`)
+        })
+      }.bind(this), 1000)
     }
 }
