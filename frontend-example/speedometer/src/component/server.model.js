@@ -26,7 +26,7 @@ export default class ServerModel extends RhelenaPresentationModel {
       this.delay = Math.min(++this.faults * 2 * this.interval, 5000)
     }
 
-     fetch () {
+    fetch () {
       setTimeout(async function(){
         try{
           const resp = await fetch(`${this.host}/shoot`)
