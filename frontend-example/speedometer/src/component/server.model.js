@@ -1,10 +1,11 @@
 import { RhelenaPresentationModel } from 'rhelena';
 import { log } from 'util';
 export default class ServerModel extends RhelenaPresentationModel {
-    constructor(name, host) {
+    constructor(name, host, onWakeup) {
         super();
         this.name = name
         this.host = host
+        this.onWakeup = onWakeup
         this.speed = 0
         this.active = false
         this.faults = 0
@@ -15,6 +16,8 @@ export default class ServerModel extends RhelenaPresentationModel {
     }
 
     healthy() {
+      if(!this.active)
+        this.onWakeup()
       this.active = true
       this.faults = 0
       this.delay = this.interval

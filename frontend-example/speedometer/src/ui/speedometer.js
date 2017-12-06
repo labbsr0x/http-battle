@@ -8,7 +8,9 @@ export default ({name, speed, active, delay}) => {
             <h1>{name}</h1>
             <h2 style={{color: active ? 'green' : "red"}}>{speed}</h2>
             { !active &&
-            <div className="clock" style={{animationDuration: delay}}></div>
+            <div>
+              <div className="clock" style={{animationDuration: delay}}></div> Wait {delay}
+            </div>
             }
         </div>
     )

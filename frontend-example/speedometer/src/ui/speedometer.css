@@ -11,6 +11,7 @@
 }
 
 .clock {
+  display: inline-block;
   border-radius: 50%;
   background: #666;
   background-size: 88%;

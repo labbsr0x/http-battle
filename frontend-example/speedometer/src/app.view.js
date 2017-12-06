@@ -10,12 +10,12 @@ export default class App extends Component {
     attachModelToView(new AppModel(), this)
   }
 
-  componentDidMount() {
-    this.viewModel.prepareServers()
-  }
-
   render() {
-    const servers = this.state.servers.map(server => { return <Server name={server.name} host={server.host} /> } )
+    const servers = this.state.servers.map(server => {
+      return <Server name={server.name} host={server.host} onWakeup={()=>{
+        this.viewModel.prepareServers()
+      }} />
+    } )
     return (
       <div className="speedbar">
         { servers }
