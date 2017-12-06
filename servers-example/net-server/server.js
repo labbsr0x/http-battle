@@ -14,6 +14,10 @@ net.createServer(function(sock) {
         if (currentData[0].indexOf('/shoot') != -1) {
             content  = ++count+""
             sock.write(`${HTTP_VERSION} 200 OK\r\n`)
+            sock.write('Access-Control-Allow-Origin: *\r\n');
+            sock.write('Access-Control-Allow-Credentials: true\r\n');
+            sock.write('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS\r\n');
+            sock.write('Access-Control-Allow-Headers: Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Requested-With\r\n');    
             sock.write(`Date: ${new Date().toString()}\r\n`);
             sock.write("Server: NodeJS net Server v0.1\r\n");
             sock.write(`Content-Length: ${content.length}\r\n`);
@@ -24,6 +28,10 @@ net.createServer(function(sock) {
             count = 0
             content = "SCHEDULED " + count
             sock.write(`${HTTP_VERSION} 200 OK\r\n`)
+            sock.write('Access-Control-Allow-Origin: *\r\n');
+            sock.write('Access-Control-Allow-Credentials: true\r\n');
+            sock.write('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS\r\n');
+            sock.write('Access-Control-Allow-Headers: Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Requested-With\r\n');    
             sock.write(`Date: ${new Date().toString()}\r\n`);
             sock.write("Server: NodeJS net Server v0.1\r\n");
             sock.write(`Content-Length: ${content.length}\r\n`);
@@ -36,6 +44,11 @@ net.createServer(function(sock) {
         sock.write(`Date: ${new Date().toString()}\r\n`);
         sock.write("Server: NodeJS net Server v0.1\r\n");
         sock.write(`Content-Length: ${content.length}\r\n`);
+        sock.write('Access-Control-Allow-Origin: *\r\n');
+        sock.write('Access-Control-Allow-Credentials: true\r\n');
+        sock.write('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS\r\n');
+        sock.write('Access-Control-Allow-Headers: Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Requested-With\r\n');
+    
         sock.write("\r\n");
         sock.end(content);
 

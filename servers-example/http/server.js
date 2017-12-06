@@ -6,6 +6,10 @@ const requestHandler = (request, response) => {
   console.log(url);
   if (url == "/shoot") {
     response.statusCode = 200
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Credentials', 'true');
+    response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    response.setHeader('Access-Control-Allow-Headers', 'Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Requested-With');
     return response.end(++count+"")
   }
   if (url == "/prepare") {
