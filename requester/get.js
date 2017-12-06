@@ -55,7 +55,7 @@ logInfo(`currentTime: ${new Date()} | ${new Date().getTime()}`)
 logInfo(`scheduledTime: ${new Date(scheduledTime)} | ${scheduledTime}`)
 const trigger = setInterval(() => {
   const countdown = (scheduledTime - new Date().getTime())/1000
-  logFine(`Faltam ${Math.round(countdown)} segundos`);
+  logInfo(`Faltam ${Math.round(countdown)} segundos`);
   if (countdown < 0) {
     const startTime = new Date().getTime()
     const runInterval = setInterval(() => {
