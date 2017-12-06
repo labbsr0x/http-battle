@@ -3,6 +3,7 @@ import { attachModelToView } from 'rhelena'
 import ServerModel from './server.model'
 
 import Speedometer from '../ui/speedometer'
+import './server.view.css'
 
 export default class Server extends Component {
 
@@ -13,7 +14,7 @@ export default class Server extends Component {
     render() {
         return (
             <div>
-                <Speedometer name={this.state.name} speed={this.state.speed} />
+                <Speedometer {...this.state} />
             </div>
         )
     }

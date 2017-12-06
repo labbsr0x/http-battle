@@ -5,13 +5,35 @@ export default class ServerModel extends RhelenaPresentationModel {
         super();
         this.name = name
         this.host = host
-        this.speed = 0;
+        this.speed = 0
+        this.active = false
+        this.faults = 0
+        this.interval = 200
+        this.delay = this.interval
 
-        setInterval(async () => {
-            const resp = await fetch(`${host}/shoot`)
-            this.speed = await resp.json()
-            console.log(this.speed);
-            
-        }, 200)
+        setTimeout(this.fetch.bind(this) , this.interval)
+    }
+
+    healthy() {
+      this.active = true
+      this.faults = 0
+      this.delay = this.interval
+    }
+
+    fallback() {
+      this.active = false
+      this.speed = 0
+      this.delay = Math.min(++this.faults * 2 * this.interval, 5000)
+    }
+
+    async fetch () {
+        try{
+          const resp = await fetch(`${this.host}/shoot`)
+          this.speed = await resp.text()
+          this.healthy()
+        }catch(err){
+          this.fallback()
+        }
+        setTimeout(this.fetch.bind(this), this.delay)
     }
 }

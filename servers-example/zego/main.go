@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	"net/http"
+	"os"
 )
 
 var counter = 0
@@ -27,5 +27,10 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/prepare", PrepareHandler)
 	r.HandleFunc("/shoot", ShootHandler)
-	http.ListenAndServe(":3000", handlers.CORS()(r))
+	port, ok := os.LookupEnv("PORT")
+	if !ok {
+		port = "9000"
+	}
+	fmt.Printf("Listen on http://0.0.0.0:%s\n", port)
+	http.ListenAndServe(":"+port, handlers.CORS()(r))
 }
