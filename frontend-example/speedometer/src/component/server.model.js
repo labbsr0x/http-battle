@@ -11,7 +11,7 @@ export default class ServerModel extends RhelenaPresentationModel {
         this.interval = 200
         this.delay = this.interval
 
-        setTimeout(this.fetch.bind(this) , this.interval)
+        this.fetch()
     }
 
     healthy() {
@@ -26,7 +26,8 @@ export default class ServerModel extends RhelenaPresentationModel {
       this.delay = Math.min(++this.faults * 2 * this.interval, 5000)
     }
 
-    async fetch () {
+     fetch () {
+      setTimeout(async function(){
         try{
           const resp = await fetch(`${this.host}/shoot`)
           this.speed = await resp.text()
@@ -34,6 +35,7 @@ export default class ServerModel extends RhelenaPresentationModel {
         }catch(err){
           this.fallback()
         }
-        setTimeout(this.fetch.bind(this), this.delay)
+        this.fetch()
+      }.bind(this), this.delay)
     }
 }
