@@ -1,0 +1,9 @@
+%% -*- erlang -*-
+{application, http_battle,
+ [{description, "http_battle"},
+  {vsn, "0.1"},
+  {modules, []},
+  {registered, []},
+  {mod, {'http_battle_app', []}},
+  {env, []},
+  {applications, [kernel, stdlib, crypto]}]}.
