@@ -3928,6 +3928,10 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
+manuh@^0.3.1:
+  version "0.3.1"
+  resolved "https://npm.lexana.com.br/manuh/-/manuh-0.3.1.tgz#2a04800d995f02402a6c9c6355e8329564ac2f87"
+
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
   resolved "https://npm.lexana.com.br/map-obj/-/map-obj-1.0.1.tgz#d933ceb9205d82bdcf4886f6742bdc2b4dea146d"

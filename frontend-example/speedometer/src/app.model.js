@@ -1,4 +1,5 @@
-import { RhelenaPresentationModel } from 'rhelena';
+import manuh from 'manuh'
+import { RhelenaPresentationModel } from 'rhelena'
 export default class AppModel extends RhelenaPresentationModel {
     constructor() {
         super();
@@ -19,6 +20,9 @@ export default class AppModel extends RhelenaPresentationModel {
             host: "http://localhost:9000"
         }]
         this.prepareTimeout = null
+        manuh.subscribe('servers/wakeup', msg => {
+            this.prepareServers();
+        })
     }
 
     prepareServers(){

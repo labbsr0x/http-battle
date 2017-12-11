@@ -20,4 +20,5 @@ We have developed this script to battle test 3 NodeJS and 2 Java and the results
 If you want to put a server on the battlefield you should provide 2 endpoints as follows:
 
 * `/prepare` - to reset the internal request counter
+* * `?reset_time` - if you want to provide a specific timestamp for the prepare to happen
 * `/shoot` - to increment the counter and return *only* its current value

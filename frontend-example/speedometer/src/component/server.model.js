@@ -1,11 +1,11 @@
-import { RhelenaPresentationModel } from 'rhelena';
-import { log } from 'util';
+import { RhelenaPresentationModel } from 'rhelena'
+import manuh from 'manuh'
+import { log } from 'util'
 export default class ServerModel extends RhelenaPresentationModel {
-    constructor(name, host, onWakeup) {
+    constructor(name, host) {
         super();
         this.name = name
         this.host = host
-        this.onWakeup = onWakeup
         this.speed = 0
         this.active = false
         this.faults = 0
@@ -16,8 +16,9 @@ export default class ServerModel extends RhelenaPresentationModel {
     }
 
     healthy() {
-      if(!this.active)
-        this.onWakeup()
+      if(!this.active) { //signal wakeup
+        manuh.publish('servers/wakeup', { host: this.host, name: this.name })
+      }
       this.active = true
       this.faults = 0
       this.delay = this.interval

@@ -12,9 +12,7 @@ export default class App extends Component {
 
   render() {
     const servers = this.state.servers.map(server => {
-      return <Server name={server.name} host={server.host} onWakeup={()=>{
-        this.viewModel.prepareServers()
-      }} />
+      return <Server name={server.name} host={server.host} />
     } )
     return (
       <div className="speedbar">

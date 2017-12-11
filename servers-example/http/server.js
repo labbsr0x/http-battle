@@ -1,9 +1,13 @@
 const http = require('http')
+const urlParser = require('url');
+
 const port = 9006
 let count = 0;
+let nextPrepareTime = null
+
 const requestHandler = (request, response) => {
   const { headers, method, url } = request;
-  console.log(url);
+
   if (url == "/shoot") {
     response.statusCode = 200
     response.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,8 +16,17 @@ const requestHandler = (request, response) => {
     response.setHeader('Access-Control-Allow-Headers', 'Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Requested-With');
     return response.end(++count+"")
   }
-  if (url == "/prepare") {
-    count = 0;
+  if (url.indexOf("/prepare") != -1) {
+    const queryObject = urlParser.parse(url, true).query;
+    if (queryObject.reset_time) {
+      console.log('reset_time', queryObject.reset_time);
+      nextPrepareTime = queryObject.reset_time
+
+    } else {
+      console.log('count 0');
+      count = 0;
+
+    }
     response.statusCode = 200
     return response.end("Scheduled")
   }
@@ -30,3 +43,14 @@ server.listen(port, (err) => {
 
   console.log(`HTTP server is listening on ${port}`)
 })
+
+//reset counter on a specified date
+setInterval(() => {
+
+  if (nextPrepareTime && nextPrepareTime != null && parseInt(new Date().getTime()) > parseInt(new Date(parseInt(nextPrepareTime)).getTime())) {
+    console.log('resetPrepare', nextPrepareTime);
+    nextPrepareTime = null
+    count = 0;
+  }
+
+}, 1)
